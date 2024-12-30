@@ -18,9 +18,6 @@ jobs:
       - name: Install DVC
         run: pip install dvc
 
-      - name: Initialize DVC
-        run: dvc init
-
       - name: Configure DVC Remote
         run: |
           dvc remote add -d myremote s3://my-dvc-backet
