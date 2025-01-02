@@ -26,10 +26,14 @@ jobs:
 
       - name: Configure DVC Remote
         run: |
-          dvc remote modify myremote access_key_id ${{ secrets.YANDEX_ACCESS_KEY_ID }}
-          dvc remote modify myremote secret_access_key ${{ secrets.YANDEX_SECRET_ACCESS_KEY }}
-          dvc remote modify myremote endpointurl https://storage.yandexcloud.net
-
+           dvc remote add -d myremote s3://dvc-ml-ops-3-yandex
+           
+      - name: Configure DVC Remote
+        run: |
+           dvc remote modify myremote access_key_id ${{ secrets.YANDEX_ACCESS_KEY_ID }}
+           dvc remote modify myremote secret_access_key ${{ secrets.YANDEX_SECRET_ACCESS_KEY }}
+           dvc remote modify myremote endpointurl https://storage.yandexcloud.net
+           
       - name: DVC Pull Data
         run: dvc pull  # Скачиваем все зависимости
 
@@ -47,5 +51,8 @@ jobs:
           git commit -m "Update DVC data"
 
       - name: Git push DVC Config
-        run: |
-          git push origin ${{ github.ref }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACTIONS_PAT }}
+          branch: ${{ github.ref }}
+          
