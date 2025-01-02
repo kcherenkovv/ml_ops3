@@ -54,9 +54,14 @@
 ## Визуализация результатов
 
 **Первая модель:**
+
+
 ![Скриншот MLflow UI](https://github.com/kcherenkovv/ml_ops3/blob/main/screens/mlflow1.png)
+
+
 **Вторая модель:**
 ![Скриншот MLflow UI](https://github.com/kcherenkovv/ml_ops3/blob/main/screens/mlflow2.png)
+
 
 ## Выводы
 
