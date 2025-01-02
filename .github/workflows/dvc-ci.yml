@@ -47,7 +47,5 @@ jobs:
           git commit -m "Update DVC data"
 
       - name: Git push DVC Config
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.ACTIONS_PAT }}
-          branch: ${{ github.ref }}
+        run: |
+          git push origin ${{ github.ref }}
