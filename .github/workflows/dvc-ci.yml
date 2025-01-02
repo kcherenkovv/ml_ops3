@@ -47,7 +47,7 @@ jobs:
         run: |
           git config user.email "github-actions@example.com"
           git config user.name "GitHub Actions"
-          git add .dvc
+          git add .dvc dvc.lock
           git commit -m "Update DVC data"
 
       - name: Git push DVC Config
