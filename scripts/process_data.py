@@ -18,6 +18,11 @@ def scale_features(df):
     df[feature_columns] = scaler.fit_transform(df[feature_columns])
     return df
 
+def create_target(df):
+     # Преобразуем колонку species в колонку target
+    df = df.rename(columns={'species':'target'})
+    return df
+
 def save_data(df, output_path):
     # Сохранить обработанные данные
     df.to_csv(output_path, index=False)
@@ -27,6 +32,7 @@ def main(input_path, output_path):
     df = load_data(input_path)
     df = clean_data(df)
     df = scale_features(df)
+    df = create_target(df)
     save_data(df, output_path)
 
 if __name__ == "__main__":
