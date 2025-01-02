@@ -48,7 +48,12 @@ jobs:
           git config user.email "github-actions@example.com"
           git config user.name "GitHub Actions"
           git add .dvc dvc.lock
-          git commit -m "Update DVC data"
+    
+          if [[ $(git status --porcelain | grep -c "dvc.lock\|.dvc") -ne 0 ]]; then
+            git commit -m "Update DVC data"
+          else
+            echo "No changes to commit"
+          fi
 
       - name: Git push DVC Config
         uses: ad-m/github-push-action@master
